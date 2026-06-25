@@ -9,7 +9,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  administration: write
 
 concurrency:
   group: pages
@@ -18,13 +17,15 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://66dev895.github.io/ai-resume-matcher/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: npm install
       - run: npm run build
-      - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with: { path: out }
       - uses: actions/deploy-pages@v4
