@@ -2,6 +2,26 @@
 
 上传简历，AI 智能分析优劣 + 匹配目标岗位要求，输出优化建议和匹配度评分。
 
+## 🏗 架构
+
+```mermaid
+graph TD
+    A["👤 用户"] --> B["📝 输入简历文本<br/>上传 .txt/.md 或粘贴"]
+    A --> C["🎯 输入岗位 JD<br/>粘贴目标岗位要求"]
+
+    B --> D["POST /api/analyze<br/>System: 你是一位资深HR..."]
+    C --> E["POST /api/match<br/>System: 你是一位技术面试官..."]
+
+    D --> F["OpenAI 兼容 API<br/>response_format: json_object"]
+    E --> F
+
+    F --> G["📊 简历分析报告<br/>评分 · 优势 · 不足 · 建议 · 关键词"]
+    F --> H["🎯 岗位匹配结果<br/>匹配度 · 满足项 · 缺失项 · 分析"]
+
+    G --> I["环形评分图 + 分类卡片"]
+    H --> I
+```
+
 ## ✨ 功能
 
 | 功能 | 说明 |
